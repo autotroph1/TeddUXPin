@@ -4,11 +4,11 @@ import os
 import re
 import time
 
-token = ''
-token_key = ''
+token = '16415747-42VKCVF9bBpdetK3OsN1wnPE1CMAkIsPwG7lH42vA'
+token_key = 'WDMZzRlSz48m32vauSVUHnAhyRT1xprWdjJIrd9lOS2mw'
 
-con_secret = ''
-con_secret_key = ''
+con_secret = 'XEQaSXBDW35vXFRO28FXMrRB1'
+con_secret_key = 'ekxEVSxsD9jkh85Cr4Oh977cpFxetXsfYGS4NsCkqe9XRgtpdO'
 
 t = Twitter(
     auth=OAuth(token, token_key, con_secret, con_secret_key))
@@ -43,7 +43,8 @@ while(True):
         text2voice = text2voice.replace ("&amp;","and")
         # conver # to hash tag
         text2voice = text2voice.replace ("#", " hash tag ")
-        print text2voice
+        ##print text2voice
+        text2voice = text2voice.replace ("@", " at ")
         # remove any HTML stuff
         text2voice = re.sub(r'https?:\/\/[\n\r\S]*', '', text2voice, flags=re.MULTILINE)
         #remove all spcae
