@@ -23,26 +23,29 @@ timeline = t.search.tweets(q="#MIT")
 ## debug
 ## print timeline ["statuses"][0]["text"]
 
-sound_cmd =['mplayer', '-ao','alsa', '-really-quiet','-noconsolecontrols']
-motor_cmd= []
-url = 'http://tts-api.com/tts.mp3?q='
 old_id = 0
 
 while(True):
-    timeline = t.search.tweets(q="#MIT")
-    tweet_id = timeline["statuses"][0]["text"]
+    sound_cmd =['mplayer', '-ao','alsa', '-really-quiet','-noconsolecontrols']
+    url = 'http://tts-api.com/tts.mp3?q='
+    timeline = t.statuses.user_timeline(screen_name="autotroph1")
+    ##timeline = t.search.tweets(q="#MIT")
+    ##tweet_id = timeline["statuses"][0]["text"]
+    tweet_id = timeline[0]["id"]
     if (old_id != tweet_id):
         old_id = tweet_id
         ##text2voice = timeline[0]["text"]
-        text2voice = timeline ["statuses"][0]["text"]
+        ##text2voice = timeline ["statuses"][0]["text"]
+        text2voice =timeline[0]["text"]
         # encode unicode to ascii
         text2voice = text2voice.encode("ascii","ignore").rstrip()
         # conver & to and
         text2voice = text2voice.replace ("&amp;","and")
         # conver # to hash tag
         text2voice = text2voice.replace ("#", " hash tag ")
+        print text2voice
         # remove any HTML stuff
-        text2voice = re.sub(r'^https?:\/\/.*[\r\n]*', '', text2voice, flags=re.MULTILINE)
+        text2voice = re.sub(r'https?:\/\/[\n\r\S]*', '', text2voice, flags=re.MULTILINE)
         #remove all spcae
         text2voice = text2voice.replace(" ", "+")
 

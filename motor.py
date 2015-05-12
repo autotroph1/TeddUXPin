@@ -9,7 +9,7 @@ GPIO.setup(24,GPIO.OUT)  # ears
 GPIO.setup(17,GPIO.OUT)
 GPIO.setup(18,GPIO.OUT)
 
-
+time.sleep (2)
 while(True):
         GPIO.output(23,True)
         GPIO.output(24,False)
