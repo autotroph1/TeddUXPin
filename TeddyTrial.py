@@ -4,11 +4,11 @@ import os
 import re
 import time
 
-token = '16415747-42VKCVF9bBpdetK3OsN1wnPE1CMAkIsPwG7lH42vA'
-token_key = 'WDMZzRlSz48m32vauSVUHnAhyRT1xprWdjJIrd9lOS2mw'
+token = ''
+token_key = ''
 
-con_secret = 'XEQaSXBDW35vXFRO28FXMrRB1'
-con_secret_key = 'ekxEVSxsD9jkh85Cr4Oh977cpFxetXsfYGS4NsCkqe9XRgtpdO'
+con_secret = ''
+con_secret_key = ''
 
 t = Twitter(
     auth=OAuth(token, token_key, con_secret, con_secret_key))

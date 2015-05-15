@@ -30,45 +30,50 @@ if ( argc != 3 ) /* argc should be 2 for correct execution */
     pinMode(M2PWM, OUTPUT);
     pinMode(M1PH, OUTPUT);
     pinMode(M2PH, OUTPUT);
-   	digitalWrite(M1PWM, LOW);
-   	digitalWrite(M2PWM, LOW);
+    digitalWrite(M1PWM, LOW);
+    digitalWrite(M2PWM, LOW);
     digitalWrite(M1PH, LOW);
     digitalWrite(M2PH, LOW);
 
-   	//Create PWM for the PWM lines
-   	softPwmCreate(M1PWM, 0, PWMSPEED);
-   	softPwmCreate(M2PWM, 0, PWMSPEED);
-    softPwmWrite(M1PWM, 60);
-    softPwmWrite(M2PWM, 60);
-    
+    //Create PWM for the PWM lines
+    softPwmCreate(M1PWM, 0, PWMSPEED);
+    softPwmCreate(M2PWM, 0, PWMSPEED);
+    softPwmWrite(M1PWM, 90);
+    softPwmWrite(M2PWM, 90);
+
     if (atol(argv[1]) == 1) // motor 1
     {
-    	if (atol(argv[2]) == 1)
-    	{
-    		digitalWrite(M1PH, HIGH);
-    	    printf ("m1 high");
+        if (atol(argv[2]) == 1)
+        {
+            digitalWrite(M1PH, HIGH);
+            printf ("m1 high");
         }
-    	else
-    	{
-    		digitalWrite(M1PH, LOW);
+        else
+        {
+            digitalWrite(M1PH, LOW);
             printf("m1 low");
-    	}
+        }
     }
     else if (atoi(argv[1]) == 2)
     {
-       	if (atoi(argv[2]) == 1)
-    	{
+        if (atoi(argv[2]) == 1)
+        {
             printf ("m2 hih");
-    		digitalWrite(M2PH, HIGH);
-    	}
-    	else
-    	{
+            digitalWrite(M2PH, HIGH);
+        }
+        else
+        {
             printf ("m2 low");
-    		digitalWrite(M2PH, LOW);
-    	}
+            digitalWrite(M2PH, LOW);
+        }
     }
-    delay (1000) ;
-    softPwmWrite(M2PWM,0);
+
+    delay (1000); 
     softPwmWrite(M1PWM,0);
+    softPwmWrite(M2PWM,0);
+//digitalWrite(M1PWM,HIGH);
+//  digitalWrite(M2PWM,HIGH);
+  digitalWrite(M1PH,LOW);
+  digitalWrite(M2PH,LOW);
     return 0;
 }
