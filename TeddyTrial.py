@@ -18,16 +18,17 @@ t = Twitter(
 ##print timeline[0]["text"]
 
 ## using twitter API
-timeline = t.search.tweets(q="#MIT")
+##timeline = t.search.tweets(q="#MIT")
 
 ## debug
 ## print timeline ["statuses"][0]["text"]
 
 old_id = 0
-
+motor_cmd = ['python','motor2.py']
 while(True):
     sound_cmd =['mplayer', '-ao','alsa', '-really-quiet','-noconsolecontrols']
-    url = 'http://tts-api.com/tts.mp3?q='
+    ##url = 'http://tts-api.com/tts.mp3?q='
+    url = 'http://translate.google.com/translate_tts?tl=en&ie=UTF-8&total=1&idx=0&client=t&q='
     timeline = t.statuses.user_timeline(screen_name="autotroph1")
     ##timeline = t.search.tweets(q="#MIT")
     ##tweet_id = timeline["statuses"][0]["text"]
@@ -35,7 +36,7 @@ while(True):
     if (old_id != tweet_id):
         old_id = tweet_id
         ##text2voice = timeline[0]["text"]
-        ##text2voice = timeline ["statuses"][0]["text"]
+        ##totext2voice = timeline ["statuses"][0]["text"]
         text2voice =timeline[0]["text"]
         # encode unicode to ascii
         text2voice = text2voice.encode("ascii","ignore").rstrip()
@@ -55,9 +56,9 @@ while(True):
         url = url + text2voice
         sound_cmd.append(url)
         ##print 'start motor'
-        ##print(sound_cmd)
-        ##url = 'http://translate.google.com/translate_tts?tl=en&q=' + text2voice
-        motorP = subprocess.Popen(['python','motor.py'])
+        print(sound_cmd)
+        ##url = 'http://translate.google.com/translate_tts?tl=en&ie=UTF-8&total=1&idx=0&client=t&q=' + text2voice
+        motorP = subprocess.Popen(motor_cmd)
         soundP = subprocess.Popen(sound_cmd)
         soundP.wait()
         motorP.kill()
